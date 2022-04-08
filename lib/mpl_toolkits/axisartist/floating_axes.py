@@ -329,8 +329,9 @@ class FloatingAxesBase:
         patch.get_path()._interpolation_steps = 100
         return patch
 
-    def cla(self):
-        super().cla()
+    def clear(self):
+        # docstring inherited
+        super().clear()
         self.patch.set_transform(
             self.get_grid_helper().grid_finder.get_transform()
             + self.transData)
@@ -341,6 +342,10 @@ class FloatingAxesBase:
         orig_patch.set_transform(self.transAxes)
         self.patch.set_clip_path(orig_patch)
         self.gridlines.set_clip_path(orig_patch)
+
+    def cla(self):
+        """Clear the current axes."""
+        self.clear()
 
     def adjust_axes_lim(self):
         bbox = self.patch.get_path().get_extents(

@@ -37,10 +37,16 @@ class CbarAxesBase:
         axis = self.axis[self.orientation]
         axis.toggle(ticklabels=b, label=b)
 
-    def cla(self):
+    def clear(self):
+        # docstring inherited
+
         orientation = self.orientation
-        super().cla()
+        super().clear()
         self.orientation = orientation
+
+    def cla(self):
+        """Clear the current axes."""
+        self.clear()
 
 
 @_api.deprecated("3.5")

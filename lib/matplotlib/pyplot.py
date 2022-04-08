@@ -1108,7 +1108,12 @@ def sca(ax):
 def cla():
     """Clear the current axes."""
     # Not generated via boilerplate.py to allow a different docstring.
-    return gca().cla()
+    clear()
+
+
+def clear():
+    """Clear the current axes."""
+    return gca().clear()
 
 
 ## More ways of creating axes ##

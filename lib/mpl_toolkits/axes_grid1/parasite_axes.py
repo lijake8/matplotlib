@@ -17,10 +17,15 @@ class ParasiteAxesBase:
         kwargs["frameon"] = False
         super().__init__(parent_axes.figure, parent_axes._position, **kwargs)
 
-    def cla(self):
-        super().cla()
+    def clear(self):
+        # docstring inherited
+        super().clear()
         martist.setp(self.get_children(), visible=False)
         self._get_lines = self._parent_axes._get_lines
+
+    def cla(self):
+        """Clear the current axes."""
+        self.clear()
 
     @_api.deprecated("3.5")
     def get_images_artists(self):
@@ -138,10 +143,15 @@ class HostAxesBase:
         super().draw(renderer)
         self._children = self._children[:orig_children_len]
 
-    def cla(self):
+    def clear(self):
+        # docstring inherited
         for ax in self.parasites:
-            ax.cla()
-        super().cla()
+            ax.clear()
+        super().clear()
+
+    def cla(self):
+        """Clear the current axes."""
+        self.clear()
 
     def pick(self, mouseevent):
         super().pick(mouseevent)
